@@ -2,9 +2,10 @@ package com.isa.usersengine.dao;
 
 import com.isa.usersengine.domain.User;
 import com.isa.usersengine.repository.UsersRepository;
-
+import javax.ejb.Stateless;
 import java.util.List;
 
+@Stateless
 public class UsersRepositoryDaoBean implements UsersRepositoryDao {
 
     @Override

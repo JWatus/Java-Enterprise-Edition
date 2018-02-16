@@ -1,10 +1,10 @@
 package com.isa.usersengine.servlets;
 
+
 import com.isa.usersengine.dao.UsersRepositoryDao;
 import com.isa.usersengine.dao.UsersRepositoryDaoBean;
 import com.isa.usersengine.domain.User;
 
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,23 +13,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/find-user-by-id")
-public class FindUserByIdServlet extends HttpServlet {
-
-    @EJB
-    UsersRepositoryDao usersRepositoryDao;
+@WebServlet("/add-user")
+public class AddUserServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if (req.getParameter("id") == null || req.getParameter("id").isEmpty()) {
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
-
+        User user = new User();
         int id = Integer.parseInt(req.getParameter("id"));
+        String name = req.getParameter("name");
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
+        int age = Integer.parseInt(req.getParameter("age"));
 
-        User user = usersRepositoryDao.getUserById(id);
+        user.setAge(age);
+        user.setId(id);
+        user.setLogin(login);
+        user.setName(name);
+        user.setPassword(password);
+
+        UsersRepositoryDao newUser = new UsersRepositoryDaoBean();
+        newUser.addUser(user);
 
         PrintWriter printWriter = resp.getWriter();
 
@@ -42,6 +46,7 @@ public class FindUserByIdServlet extends HttpServlet {
         printWriter.write("Name: " + user.getName() + "\n");
         printWriter.write("Login: " + user.getLogin() + "\n");
         printWriter.write("Age: " + user.getAge() + "\n");
+        printWriter.write("Password: " + user.getPassword() + "\n");
 
     }
 }
