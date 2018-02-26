@@ -1,5 +1,9 @@
 package com.isa.usersengine.servlets;
 
+import com.isa.usersengine.freemarker.TemplateProvider;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/welcome-user")
 public class WeclomeUserServlet extends HttpServlet {
@@ -21,12 +27,17 @@ public class WeclomeUserServlet extends HttpServlet {
             return;
         }
 
+        Map<String, Object> dataModel = new HashMap<>();
+        dataModel.put("name", name);
+
+        Template template = TemplateProvider.createTemplate(getServletContext(), "welcome-user.ftlh");
+
         PrintWriter printWriter = resp.getWriter();
-        printWriter.write("<!DOCTYPE html>");
-        printWriter.write("<html>");
-        printWriter.write("<body>");
-        printWriter.write("Hello:" + name + "!");
-        printWriter.write("</body>");
-        printWriter.write("</html>");
+
+        try {
+            template.process(dataModel, printWriter);
+        } catch (TemplateException e){
+            e.printStackTrace();
+        }
     }
 }

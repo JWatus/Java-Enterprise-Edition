@@ -3,6 +3,9 @@ package com.isa.usersengine.servlets;
 import com.isa.usersengine.dao.UsersRepositoryDao;
 import com.isa.usersengine.dao.UsersRepositoryDaoBean;
 import com.isa.usersengine.domain.User;
+import com.isa.usersengine.freemarker.TemplateProvider;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -12,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/find-user-by-id")
 public class FindUserByIdServlet extends HttpServlet {
@@ -31,6 +36,11 @@ public class FindUserByIdServlet extends HttpServlet {
 
         User user = usersRepositoryDao.getUserById(id);
 
+        Map<String, Object> dataModel = new HashMap<>();
+        dataModel.put("user", user);
+
+        Template template = TemplateProvider.createTemplate(getServletContext(), "find-user-by-id.ftlh");
+
         PrintWriter printWriter = resp.getWriter();
 
         if (user == null) {
@@ -38,10 +48,10 @@ public class FindUserByIdServlet extends HttpServlet {
             return;
         }
 
-        printWriter.write("ID: " + user.getId() + "\n");
-        printWriter.write("Name: " + user.getName() + "\n");
-        printWriter.write("Login: " + user.getLogin() + "\n");
-        printWriter.write("Age: " + user.getAge() + "\n");
-
+        try {
+            template.process(dataModel, printWriter);
+        } catch (TemplateException e){
+            e.printStackTrace();
+        }
     }
 }

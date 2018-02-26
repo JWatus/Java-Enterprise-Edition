@@ -3,6 +3,7 @@
 /home/jakubwatus/development/usersengine/src/main/java/com/isa/usersengine/cdi/RandomUserCDIApplicationDaoBean.java
 /home/jakubwatus/development/usersengine/src/main/java/com/isa/Main.java
 /home/jakubwatus/development/usersengine/src/main/java/com/isa/usersengine/cdi/RandomUserCDIApplicationDao.java
+/home/jakubwatus/development/usersengine/src/main/java/com/isa/usersengine/servlets/UsersListServlet.java
 /home/jakubwatus/development/usersengine/src/main/java/com/isa/usersengine/dao/UsersRepositoryDaoBean.java
 /home/jakubwatus/development/usersengine/src/main/java/com/isa/usersengine/dao/UsersRepositoryDao.java
 /home/jakubwatus/development/usersengine/src/main/java/com/isa/usersengine/cdi/RandomUserServlet.java
@@ -12,5 +13,6 @@
 /home/jakubwatus/development/usersengine/src/main/java/com/isa/usersengine/domain/User.java
 /home/jakubwatus/development/usersengine/src/main/java/com/isa/usersengine/cdi/RandomUserCDIRequestDaoBean.java
 /home/jakubwatus/development/usersengine/src/main/java/com/isa/usersengine/servlets/FindUserByIdServlet.java
+/home/jakubwatus/development/usersengine/src/main/java/com/isa/usersengine/freemarker/TemplateProvider.java
 /home/jakubwatus/development/usersengine/src/main/java/com/isa/usersengine/cdi/RandomUserCDISessionDao.java
 /home/jakubwatus/development/usersengine/src/main/java/com/isa/usersengine/cdi/RandomUserCDISessionDaoBean.java

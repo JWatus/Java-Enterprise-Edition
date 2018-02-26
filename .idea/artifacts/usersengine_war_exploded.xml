@@ -10,6 +10,7 @@
           <element id="library" level="project" name="Maven: javax:javaee-api:8.0" />
           <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.0" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.27-incubating" />
         </element>
       </element>
       <element id="directory" name="META-INF">
