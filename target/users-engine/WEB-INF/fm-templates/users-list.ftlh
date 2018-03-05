@@ -10,6 +10,7 @@
         <p>name: ${user.name}</p>
         <p>login: ${user.login}</p>
         <p>age: ${user.age}</p>
+        <p>gender: ${user.gender}</p>
     </#items>
     <#sep> <p>========================================</p> </#sep>
 </#list>

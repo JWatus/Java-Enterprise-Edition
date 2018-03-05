@@ -1,10 +1,13 @@
 package com.isa.usersengine.servlets;
 
+import com.isa.usersengine.domain.SalaryIncrementFilter;
 import com.isa.usersengine.freemarker.TemplateProvider;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
-import javax.servlet.ServletException;
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,8 +30,11 @@ public class WeclomeUserServlet extends HttpServlet {
             return;
         }
 
+        double salary = (double) req.getAttribute("salary");
+
         Map<String, Object> dataModel = new HashMap<>();
         dataModel.put("name", name);
+        dataModel.put("salary", salary);
 
         Template template = TemplateProvider.createTemplate(getServletContext(), "welcome-user.ftlh");
 

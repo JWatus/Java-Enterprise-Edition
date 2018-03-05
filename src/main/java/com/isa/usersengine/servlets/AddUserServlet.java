@@ -5,6 +5,7 @@ import com.isa.usersengine.dao.UsersRepositoryDao;
 import com.isa.usersengine.dao.UsersRepositoryDaoBean;
 import com.isa.usersengine.domain.User;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,9 @@ import java.io.PrintWriter;
 
 @WebServlet("/add-user")
 public class AddUserServlet extends HttpServlet {
+
+    @EJB
+    UsersRepositoryDao usersRepositoryDao;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,21 +36,28 @@ public class AddUserServlet extends HttpServlet {
         user.setName(name);
         user.setPassword(password);
 
-        UsersRepositoryDao newUser = new UsersRepositoryDaoBean();
-        newUser.addUser(user);
+//        UsersRepositoryDao newUser = new UsersRepositoryDaoBean();
+//        newUser.addUser(user);
+//
+//        PrintWriter printWriter = resp.getWriter();
+//
+//        if (user == null) {
+//            printWriter.write("User not found");
+//            return;
+//        }
+//
+//        printWriter.write("ID: " + user.getId() + "\n");
+//        printWriter.write("Name: " + user.getName() + "\n");
+//        printWriter.write("Login: " + user.getLogin() + "\n");
+//        printWriter.write("Age: " + user.getAge() + "\n");
+//        printWriter.write("Password: " + user.getPassword() + "\n");
+//        printWriter.write("Gender: " + user.getGender() + "\n");
 
-        PrintWriter printWriter = resp.getWriter();
-
-        if (user == null) {
-            printWriter.write("User not found");
-            return;
-        }
-
-        printWriter.write("ID: " + user.getId() + "\n");
-        printWriter.write("Name: " + user.getName() + "\n");
-        printWriter.write("Login: " + user.getLogin() + "\n");
-        printWriter.write("Age: " + user.getAge() + "\n");
-        printWriter.write("Password: " + user.getPassword() + "\n");
+        usersRepositoryDao.addUser(user);       // TWORZYC JAKO BEANY W EE
+        resp.sendRedirect("/users-list");
 
     }
 }
+
+// parametry z doPost -> dodaje usera -> idzie do metody add -> widzi ze interceptor
+// -> modyfikuje metode -> wraca do servletu i dodaje usera -> przekierowuje do /users-list i wyswietla
