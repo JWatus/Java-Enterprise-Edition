@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="pl">
 <head>
-    <title>Find user by ID</title>
+    <title>
+        Users list
+    </title>
 </head>
 <body>
 <#list users>
-    <#items as user>
-        <p>ID: ${user.id}</p>
-        <p>name: ${user.name}</p>
-        <p>login: ${user.login}</p>
-        <p>age: ${user.age}</p>
-        <p>gender: ${user.gender}</p>
-    </#items>
-    <#sep> <p>========================================</p> </#sep>
+<#items as user>
+    ID:${user.id}<br>
+    Name:${user.name}<br>
+    Login:${user.login}<br>
+    Age:${user.age}<br>
+    Gender:${user.gender}<br>
+    <#if (user.imageURL) ??>
+<img src="${user.imageURL}" width="200"/>
+    </#if>
+    <#sep>*********************************************** </#sep>
+</#items>
 </#list>
 </body>
 </html>

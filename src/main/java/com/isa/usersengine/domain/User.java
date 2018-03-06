@@ -8,6 +8,15 @@ public class User {
     private String password;
     private int age;
     private Gender gender;
+    private String imageURL;
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 
     public Gender getGender() {
         return gender;
@@ -16,8 +25,6 @@ public class User {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-
-
 
     public int getId() {
         return id;
