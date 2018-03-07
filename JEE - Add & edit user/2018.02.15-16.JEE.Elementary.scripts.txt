@@ -1,0 +1,100 @@
+<plugins>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.0</version>
+    </plugin>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.2</version>
+    </plugin>
+</plugins> 
+
+
+<dependencies>
+    <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+        <version>8.0</version>
+    </dependency>
+<dependencies>
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web xmlns="http://www.jboss.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee
+      http://www.jboss.org/j2ee/schema/jboss-web_11_0.xsd" version="11.0">
+    <context-root>/</context-root> 
+</jboss-web>
+
+
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-ejb-plugin</artifactId>
+    <version>3.0.0</version>
+    <configuration>
+        <ejbVersion>3.2</ejbVersion>
+        <generateClient>true</generateClient>
+        <clientIncludes>
+            <clientInclude>com/isa/usersengine/dao/UsersRepositoryDaoRemote.class
+            </clientInclude> 
+        </clientIncludes>
+    </configuration>
+</plugin>
+
+
+<dependency>
+    <groupId>com.isa</groupId>
+    <artifactId>users-engine-client</artifactId> 
+    <version>1.0</version>
+</dependency>
+
+
+<plugin>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <version>3.1.0</version>
+    <configuration>
+        <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+        </descriptorRefs>
+        <archive>
+            <manifest>
+                <addClasspath>true</addClasspath>
+                <classpathPrefix>libs/</classpathPrefix>
+                <mainClass>
+                    com.isa.App 
+                </mainClass>
+            </manifest>
+        </archive>
+    </configuration>
+    <executions>
+        <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+                <goal>single</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+
+
+<dependency>
+    <groupId>org.wildfly</groupId>
+    <artifactId>wildfly-client-all</artifactId> 
+    <version>11.0.0.Final</version>
+</dependency>
+
+
+Hashtable<String, String> properties = new Hashtable<String, String>();
+properties.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
+properties.put("jboss.naming.client.ejb.context", "true");
+properties.put(Context.PROVIDER_URL, "http-remoting://localhost:8080");
+properties.put(Context.SECURITY_PRINCIPAL, "<user>");
+properties.put(Context.SECURITY_CREDENTIALS, "<password>");
+Context context = new InitialContext(properties);
+
+
+
