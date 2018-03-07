@@ -1,0 +1,16 @@
+com\isa\usersengine\cdi\RandomUserCDIRequestDaoBean.class
+com\isa\usersengine\cdi\RandomUserCDISessionDaoBean.class
+com\isa\usersengine\servlets\AddUserServlet.class
+com\isa\usersengine\cdi\RandomUserCDISessionDao.class
+com\isa\usersengine\servlets\FindUserByIdServlet.class
+com\isa\usersengine\servlets\WeclomeUserServlet.class
+com\isa\usersengine\cdi\RandomUserCDIApplicationDao.class
+com\isa\usersengine\dao\UsersRepositoryDaoBean.class
+com\isa\Main.class
+com\isa\usersengine\repository\UsersRepository.class
+com\isa\usersengine\domain\User.class
+com\isa\usersengine\dao\UsersRepositoryDao.class
+com\isa\usersengine\servlets\HelloServlet.class
+com\isa\usersengine\cdi\RandomUserCDIRequestDao.class
+com\isa\usersengine\cdi\RandomUserServlet.class
+com\isa\usersengine\cdi\RandomUserCDIApplicationDaoBean.class
